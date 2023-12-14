@@ -1,7 +1,5 @@
 extends Area2D
 
-class_name Recepcion
-
 var isPlayerHere = false
 var playerRef : Player
 @onready var interactSprite = $Spr_up_key_ladder
@@ -10,7 +8,7 @@ var playerRef : Player
 func _process(_delta: float) -> void:
 	if isPlayerHere:
 		if Input.is_action_just_pressed("ui_up"):
-			# Entregar orden
+			# Entregar horno
 			pass
 			
 

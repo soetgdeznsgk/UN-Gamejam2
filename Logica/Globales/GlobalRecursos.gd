@@ -16,11 +16,11 @@ enum mineralesSinFondo{
 	Carbon,
 	Cobre,
 	Amatista,
-	Esmeralda,
 	Topacio,
 	Rubi,
 	Zafiro,
 	Diamante,
+	Esmeralda,
 }
 
 enum mineralesConFondo{
@@ -30,14 +30,17 @@ enum mineralesConFondo{
 	Carbon,
 	Cobre,
 	Amatista,
-	Tierra,
-	TierraMinada,
 	Topacio,
 	Rubi,
 	Zafiro,
 	Diamante,
-	Esmeralda
+	Esmeralda,
+	Tierra,
+	TierraMinada,
 }
+
+func _ready() -> void:
+	GlobalTiempo.finalizarDia.connect(pagueme_la_renta)
 
 func actualizar_mineral(mineral : int, cantidad : int):
 	minerales[mineral] += cantidad
@@ -48,4 +51,11 @@ func actualizar_dinero(cantidad : int):
 	cambioDinero.emit(dinero)
 	if dinero < 0:
 		#todo gameover por bancarota
+		print('geim ouver')
 		pass
+
+func pagueme_la_renta():
+	var valorDia = 5*GlobalTiempo.diaActual
+	if valorDia > 50:
+		valorDia = 50
+	actualizar_dinero(-10 - valorDia)
